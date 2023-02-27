@@ -1,0 +1,69 @@
+version: '3.4'
+
+services:
+  redditlivethreadworker:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - RABBIT_HOST=rabbitmq
+      - REDDIT_WS=wss://ws-07381166f904475a7.wss.redditmedia.com/live/ta535s1hq2je?m=AQAAq7L5Y4O1u_f12iRAq04fexalwfS1PfOv6FGSIJOxPzGxDj3I
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    depends_on:
+      - rabbitmq
+
+  messageconsumer:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - RABBIT_HOST=rabbitmq
+      - Otlp__Endpoint=http://otel-collector:4317
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - rabbitmq
+      - otel-collector
+
+  mockredditlivethreadworker:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBIT_HOST=rabbitmq
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    depends_on:
+      - rabbitmq
+
+# 3rd party Containers
+  rabbitmq:
+    image: rabbitmq:management
+    hostname: local-rabbit
+    container_name: caerbannog
+    ports:
+     - 15672:15672
+     - 5672:5672
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    command: --config.file=/etc/prometheus/prometheus.yml --log.level=debug
+    volumes:
+      - ./src/config/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    ports:
+      - 9090:9090
+    depends_on:
+      - messageconsumer
+
+  otel-collector:
+    container_name: open-telemetry
+    image: otel/opentelemetry-collector:latest
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./src/config/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "8888:8888" 
+      - "8889:8889" 
+      - "13133:13133"
+      - "4317:4317"

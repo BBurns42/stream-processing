@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F5002A4A-1C4C-4E35-91BC-51CE218E5BFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8EA9A962-4811-4606-95A1-C7A29A7269ED}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedditLiveThreadWorker", "src\RedditLiveThreadWorker\RedditLiveThreadWorker.csproj", "{A3472613-65A2-4E18-887D-B3050937B55D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageConsumer", "src\MessageConsumer\MessageConsumer.csproj", "{438CCF14-E58C-4E10-B88A-94D4C94E7965}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagingLibrary", "src\MessagingLibrary\MessagingLibrary.csproj", "{ACB1AF7E-1914-45BB-A054-A818B4D25AEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{19433633-3ECE-43F0-B116-F146ECD772A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockRedditLiveThreadWorker", "src\MockRedditLiveThreadWorker\MockRedditLiveThreadWorker.csproj", "{048AADA3-F8DA-418E-B291-E30ED398A542}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{A0186C5F-11AC-487E-B9CD-8C8CC20818FE}"
+	ProjectSection(SolutionItems) = preProject
+		src\config\otel-collector-config.yaml = src\config\otel-collector-config.yaml
+		src\config\prometheus.yaml = src\config\prometheus.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5002A4A-1C4C-4E35-91BC-51CE218E5BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5002A4A-1C4C-4E35-91BC-51CE218E5BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5002A4A-1C4C-4E35-91BC-51CE218E5BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5002A4A-1C4C-4E35-91BC-51CE218E5BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3472613-65A2-4E18-887D-B3050937B55D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3472613-65A2-4E18-887D-B3050937B55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3472613-65A2-4E18-887D-B3050937B55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3472613-65A2-4E18-887D-B3050937B55D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{438CCF14-E58C-4E10-B88A-94D4C94E7965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{438CCF14-E58C-4E10-B88A-94D4C94E7965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{438CCF14-E58C-4E10-B88A-94D4C94E7965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{438CCF14-E58C-4E10-B88A-94D4C94E7965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB1AF7E-1914-45BB-A054-A818B4D25AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB1AF7E-1914-45BB-A054-A818B4D25AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB1AF7E-1914-45BB-A054-A818B4D25AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB1AF7E-1914-45BB-A054-A818B4D25AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048AADA3-F8DA-418E-B291-E30ED398A542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048AADA3-F8DA-418E-B291-E30ED398A542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048AADA3-F8DA-418E-B291-E30ED398A542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048AADA3-F8DA-418E-B291-E30ED398A542}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3472613-65A2-4E18-887D-B3050937B55D} = {8EA9A962-4811-4606-95A1-C7A29A7269ED}
+		{438CCF14-E58C-4E10-B88A-94D4C94E7965} = {8EA9A962-4811-4606-95A1-C7A29A7269ED}
+		{ACB1AF7E-1914-45BB-A054-A818B4D25AEE} = {19433633-3ECE-43F0-B116-F146ECD772A0}
+		{19433633-3ECE-43F0-B116-F146ECD772A0} = {8EA9A962-4811-4606-95A1-C7A29A7269ED}
+		{048AADA3-F8DA-418E-B291-E30ED398A542} = {8EA9A962-4811-4606-95A1-C7A29A7269ED}
+		{A0186C5F-11AC-487E-B9CD-8C8CC20818FE} = {8EA9A962-4811-4606-95A1-C7A29A7269ED}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97060D81-0976-41F0-BFD8-ED26633F44D9}
+	EndGlobalSection
+EndGlobal

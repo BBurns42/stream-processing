@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  redditlivethreadworker:
+    image: ${DOCKER_REGISTRY-}redditlivethreadworker
+    build:
+      context: .
+      dockerfile: src/RedditLiveThreadWorker/Dockerfile
+
+  messageconsumer:
+    image: ${DOCKER_REGISTRY-}messageconsumer
+    build:
+      context: .
+      dockerfile: src/MessageConsumer/Dockerfile
+
+
+  mockredditlivethreadworker:
+    image: ${DOCKER_REGISTRY-}mockredditlivethreadworker
+    build:
+      context: .
+      dockerfile: src/MockRedditLiveThreadWorker/Dockerfile
+

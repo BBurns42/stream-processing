@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "messageconsumer": "StartDebugging",
+        "mockredditlivethreadworker": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging",
+        "redditlivethreadworker": "DoNotStart",
+        "grafana": "StartWithoutDebugging",
+        "otel-collector": "StartWithoutDebugging",
+        "prometheus": "StartWithoutDebugging"
+      }
+    }
+  }
+}
