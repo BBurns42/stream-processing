@@ -7,9 +7,7 @@ This is achieved by using dedicated services for connecting to the Reddit live s
 
 ![Service Diagram](./service%20diagram.png)
 
-To accomodate the potential multiple sources of data, each Message Consumer service independently collects metrics using System Diagnostics. These in turn are broadcasted to an Open Telemetry service for collation and can be broadcasted to Prometheus. This in turn can be used by observabillity platforms such as Grafana for dashboards. Otherwise, metrics are broadcasted via console log per Consumer service.
-
-> **_NOTE:_** There's currently a configuration issue where OTel is submitting data that is not being scraped by Prometheus.
+To accomodate the potential multiple sources of data, each Message Consumer service independently collects metrics using System Diagnostics. These in turn are broadcasted to an Open Telemetry service for collation and can be scraped by Prometheus. This in turn is used by Grafana for dashboards.
 
 ## Getting Started
 
