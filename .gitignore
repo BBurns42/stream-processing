@@ -3,3 +3,5 @@
 obj
 bin
 *.csproj.user
+/docker-compose.dcproj
+/docker-compose.dcproj.user

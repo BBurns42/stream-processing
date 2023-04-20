@@ -24,8 +24,13 @@ builder.Host
                 .AddMeter(metricName)
                 .AddAspNetCoreInstrumentation()
                 .AddRuntimeInstrumentation()
-                .AddOtlpExporter(exporterOptions => exporterOptions.Endpoint = new Uri(builder.Configuration["Otlp:Endpoint"]))
-                .AddConsoleExporter());
+                .AddProcessInstrumentation()
+                .AddOtlpExporter((exporterOptions, metricReaderOptions) =>
+                {
+                    exporterOptions.Endpoint = new Uri(builder.Configuration["Otlp:Endpoint"]);
+                    metricReaderOptions.PeriodicExportingMetricReaderOptions.ExportIntervalMilliseconds = 10000;
+                })
+            );
 
         
         var rabbitMq = $"rabbitmq://{Environment.GetEnvironmentVariable("RABBIT_HOST") ?? throw new ConfigurationException("RABBIT_HOST is invalid.")}";

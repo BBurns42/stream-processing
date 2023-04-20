@@ -20,3 +20,9 @@ services:
       context: .
       dockerfile: src/MockRedditLiveThreadWorker/Dockerfile
 
+  mockredditlivethreadworker2:
+    image: ${DOCKER_REGISTRY-}mockredditlivethreadworker
+    build:
+      context: .
+      dockerfile: src/MockRedditLiveThreadWorker/Dockerfile
+      

@@ -17,8 +17,8 @@ namespace MessageConsumer.Services
         {
             var meter = new Meter(name);
 
-            MessagesCounter = meter.CreateCounter<int>("messages-count");
-            MessageProcessingHistogram = meter.CreateHistogram<float>("processing-duration", unit: "ms");
+            MessagesCounter = meter.CreateCounter<int>("reddit_messages_count");
+            MessageProcessingHistogram = meter.CreateHistogram<float>("reddit_processing_duration", unit: "ms");
         }
     }
 }

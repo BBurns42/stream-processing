@@ -5,7 +5,7 @@ services:
     environment:
       - DOTNET_ENVIRONMENT=Development
       - RABBIT_HOST=rabbitmq
-      - REDDIT_WS=wss://ws-07381166f904475a7.wss.redditmedia.com/live/ta535s1hq2je?m=AQAAq7L5Y4O1u_f12iRAq04fexalwfS1PfOv6FGSIJOxPzGxDj3I
+      - REDDIT_WS=wss://ws-07381166f904475a7.wss.redditmedia.com/live/ta535s1hq2je?m=AQAAl8BAZD9ZiO8c9Vn46799cPZ6jn9WF9JalUy-N1rR-HNtpwef
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     depends_on:
@@ -36,6 +36,15 @@ services:
     depends_on:
       - rabbitmq
 
+  mockredditlivethreadworker2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBIT_HOST=rabbitmq
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    depends_on:
+      - rabbitmq
+
 # 3rd party Containers
   rabbitmq:
     image: rabbitmq:management
@@ -45,10 +54,19 @@ services:
      - 15672:15672
      - 5672:5672
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - ./src/config/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./src/config/grafana/provisioning/:/etc/grafana/provisioning/
+    ports:
+      - 3000:3000
+
   prometheus:
     container_name: prometheus
     image: prom/prometheus:latest
-    command: --config.file=/etc/prometheus/prometheus.yml --log.level=debug
+    command: --config.file=/etc/prometheus/prometheus.yaml --log.level=debug
     volumes:
       - ./src/config/prometheus.yaml:/etc/prometheus/prometheus.yaml
     ports:
@@ -67,3 +85,4 @@ services:
       - "8889:8889" 
       - "13133:13133"
       - "4317:4317"
+      - "4318:4318"

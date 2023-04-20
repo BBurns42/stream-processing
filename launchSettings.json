@@ -8,9 +8,10 @@
         "mockredditlivethreadworker": "StartWithoutDebugging",
         "rabbitmq": "StartWithoutDebugging",
         "redditlivethreadworker": "DoNotStart",
-        "grafana": "StartWithoutDebugging",
         "otel-collector": "StartWithoutDebugging",
-        "prometheus": "StartWithoutDebugging"
+        "prometheus": "StartWithoutDebugging",
+        "grafana": "StartWithoutDebugging",
+        "mockredditlivethreadworker2": "StartDebugging"
       }
     }
   }
